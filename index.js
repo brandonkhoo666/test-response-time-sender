@@ -20,7 +20,6 @@ async function send(url, index) {
         "Content-Type": "application/json",
       },
       data: {},
-      timeout: 5000,
     });
     const end = Date.now();
     console.log(`Test ${index + 1} done.`);
@@ -36,6 +35,14 @@ async function send(url, index) {
     };
   } catch (error) {
     console.error(error);
+    if (error.code === "ECONNRESET") {
+      console.log("Connection reset, retrying after 1 second...");
+      // Retry logic
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Retry after 1 second
+      return send(url, index); // Retry the request
+    } else {
+      throw error;
+    }
   }
 }
 
