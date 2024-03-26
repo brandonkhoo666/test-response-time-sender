@@ -70,6 +70,7 @@ app.post("/api/sendRequest", async (req, res) => {
     maxTotalTimeTaken: maxBy(timestamps, "totalTimeTaken").totalTimeTaken,
   };
 
+  console.log("all done");
   res.status(200).send(data);
 });
 
