@@ -20,6 +20,7 @@ async function send(url, index) {
         "Content-Type": "application/json",
       },
       data: {},
+      timeout: 5000,
     });
     const end = Date.now();
     console.log(`Test ${index + 1} done.`);
