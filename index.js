@@ -34,13 +34,13 @@ async function send(url, index) {
       totalTimeTaken: end - start,
     };
   } catch (error) {
-    console.error(error);
     if (error.code === "ECONNRESET") {
       console.log("Connection reset, retrying after 1 second...");
       // Retry logic
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Retry after 1 second
       return send(url, index); // Retry the request
     } else {
+      console.error(error);
       throw error;
     }
   }
